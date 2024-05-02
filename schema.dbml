@@ -1,0 +1,8 @@
+Table healthtracker{
+    id bigserial [primary key]
+    created_at timestamp
+    walking text
+    hydrate text
+    sleep text
+    version int
+}
