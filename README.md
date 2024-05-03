@@ -48,11 +48,22 @@ PUT /health/view/:id
 DELETE /health/view/:id  
 ```
 ## API Reference
-Healthcheck
+**Healthcheck**
 
 ``` 
 GET /
  ```
+
+**Registration**
+
+```json
+{
+    "key1": "value1",
+    "key2": "value2",
+    "key3": ""
+}
+
+
 ## DB Structure
 ```
 Table healthtracker {
