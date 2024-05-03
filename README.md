@@ -15,9 +15,13 @@ go run ./cmd/api
 ```
 #### List of flags
 ```dsn``` — postgress connection string with username, password, address, port, database name, and SSL mode. Default: Value is not correct by security reasons.
+
 ```migrations``` — Path to folder with migration files. If not provided, migrations do not applied.
+
 ```fill``` — Fill database with dummy data. Default: false.
+
 ```env``` - App running mode. Default: development
+
 ```port``` - App port. Default: 8081
 ### Run with docker-compose
 
