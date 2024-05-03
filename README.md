@@ -1,5 +1,7 @@
 # HealthtrackerProjectGo
 Welcome to HealthtrackerProjectGo, a powerful health tracking application built using the Go programming language. This project aims to provide users with a comprehensive platform to monitor and manage various aspects of their health and well-being seamlessly.
+## What is HealthtrackerProjectGo?
+Welcome to HealthtrackerProjectGo, a powerful health tracking application built using the Go programming language. This project aims to provide users with a comprehensive platform to monitor and manage various aspects of their health and well-being seamlessly.
 ## Getting Started
 ### Using app golang directly on Terminal
 ### Run with docker-compose
