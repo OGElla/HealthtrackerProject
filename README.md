@@ -29,7 +29,8 @@ go run ./cmd/api
 ```
 env POSTGRES_PASSWORD="STRONG PASSWORD" APP_DSN="postgres://postgres:postgres@db:5432/healthtracker?sslmode=disable" docker-compose --env-file .env.example up --build
 ```
-```env POSTGRES_PASSWORD="postgres" '' This command adds the environment variable then available in docker-compose.
+
+```env POSTGRES_PASSWORD="postgres"``` This command adds the environment variable then available in docker-compose.
 
 ```APP_DSN``` contains the connection string to the dockerized Postgres.
 
@@ -38,7 +39,6 @@ Overall, your DSN for docker should be like this: postgres://postgres:postgres@d
 ```--build``` flag forces docker-compose to rebuild the app. For example, if you have changed the source code, you need this flag.
 
 ## Healthtracker REST API
-
 ```
 *list of all trackers*
 GET /health/daily  
@@ -47,7 +47,6 @@ GET /health/view/:id
 PUT /health/view/:id  
 DELETE /health/view/:id  
 ```
-
 ## DB Structure
 ```
 Table healthtracker {
