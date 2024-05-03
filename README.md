@@ -23,8 +23,19 @@ go run ./cmd/api
 ```env``` - App running mode. Default: development
 
 ```port``` - App port. Default: 4001
-### Run with docker-compose
 
+
+### Run with docker-compose
+```
+env POSTGRES_PASSWORD="STRONG PASSWORD" APP_DSN="postgres://postgres:postgres@db:5432/healthtracker?sslmode=disable" docker-compose --env-file .env.example up --build
+```
+```env POSTGRES_PASSWORD="postgres" '' This command adds the environment variable then available in docker-compose.
+
+```APP_DSN``` contains the connection string to the dockerized Postgres.
+
+Overall, your DSN for docker should be like this: postgres://postgres:postgres@db:5432/healthtracker?sslmode=disable.
+
+```--build``` flag forces docker-compose to rebuild the app. For example, if you have changed the source code, you need this flag.
 ## Healthtracker REST API 
 ```
 *list of all trackers*
@@ -69,3 +80,6 @@ Ref: healthtracker_and_goals.goal < goals.id
 
 ## Contributing 
 Contributions to HealthtrackerProjectGo are welcome! Whether you're interested in adding new features, fixing bugs, or improving documentation, your contributions help make this project better for everyone.
+
+## Authors
+Dussekenov Elnar 21B030333 @depayka
