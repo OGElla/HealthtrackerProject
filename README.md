@@ -58,14 +58,13 @@ GET /
 
 ```json
 {
-    "key1": "value1",
-    "key2": "value2",
-    "key3": ""
+    "email": "YourEmail",
+    "name: "YourName",
+    "password": "YourPassword"
 }
-
+```
 
 ## DB Structure
-```
 Table healthtracker {
     id bigserial [primary key]
     created_at timestamp
