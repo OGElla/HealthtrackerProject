@@ -56,13 +56,20 @@ GET /
 
 **Registration**
 
+```
+POST /users
+```
+
 ```json
 {
     "email": "YourEmail",
-    "name: "YourName",
+    "name": "YourName",
     "password": "YourPassword"
 }
 ```
+
+**Activation**
+
 
 ## DB Structure
 Table healthtracker {
