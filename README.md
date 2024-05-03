@@ -1,5 +1,9 @@
 # HealthtrackerProjectGo
 Welcome to HealthtrackerProjectGo, a powerful health tracking application built using the Go programming language. This project aims to provide users with a comprehensive platform to monitor and manage various aspects of their health and well-being seamlessly.
+## Getting Started
+### Using app golang directly on Terminal
+### Run with docker-compose
+
 ## Healthtracker REST API 
 ```
 *list of all trackers*
@@ -41,3 +45,6 @@ Table healthtracker_and_goals {
 Ref: healthtracker_and_goals.healthtracker < healthtracker.id
 Ref: healthtracker_and_goals.goal < goals.id
 ```
+
+## Contributing 
+Contributions to HealthtrackerProjectGo are welcome! Whether you're interested in adding new features, fixing bugs, or improving documentation, your contributions help make this project better for everyone.
