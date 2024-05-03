@@ -50,7 +50,9 @@ DELETE /health/view/:id
 ## API Reference
 Healthcheck
 
-``` GET /  ```
+``` 
+GET /
+ ```
 ## DB Structure
 ```
 Table healthtracker {
