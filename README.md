@@ -62,14 +62,36 @@ POST /users
 
 ```json
 {
-    "email": "YourEmail",
-    "name": "YourName",
-    "password": "YourPassword"
+    "email": "yourEmail",
+    "name": "yourName",
+    "password": "yourPassword"
 }
 ```
 
 **Activation**
 
+```
+PUT /users/activated
+```
+
+```json
+{
+    "token": "receivedToken",
+}
+```
+
+**Login**
+
+```
+POST /tokens/authentication
+```
+
+```json
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+```
 
 ## DB Structure
 Table healthtracker {
