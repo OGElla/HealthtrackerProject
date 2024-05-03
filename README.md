@@ -9,7 +9,8 @@ GET /health/view/:id
 PUT /health/view/:id  
 DELETE /health/view/:id  
 ```
-
+## DB Structure
+```
 Table healthtracker {
     id bigserial [primary key]
     created_at timestamp
