@@ -36,6 +36,7 @@ env POSTGRES_PASSWORD="STRONG PASSWORD" APP_DSN="postgres://postgres:postgres@db
 Overall, your DSN for docker should be like this: postgres://postgres:postgres@db:5432/healthtracker?sslmode=disable.
 
 ```--build``` flag forces docker-compose to rebuild the app. For example, if you have changed the source code, you need this flag.
+
 ## Healthtracker REST API 
 ```
 *list of all trackers*
