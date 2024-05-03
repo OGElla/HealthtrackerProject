@@ -22,7 +22,7 @@ go run ./cmd/api
 
 ```env``` - App running mode. Default: development
 
-```port``` - App port. Default: 8081
+```port``` - App port. Default: 4001
 ### Run with docker-compose
 
 ## Healthtracker REST API 
