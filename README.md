@@ -47,6 +47,10 @@ GET /health/view/:id
 PUT /health/view/:id  
 DELETE /health/view/:id  
 ```
+## API Reference
+Healthcheck
+
+``` GET /  ```
 ## DB Structure
 ```
 Table healthtracker {
