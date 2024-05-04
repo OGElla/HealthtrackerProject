@@ -88,8 +88,23 @@ POST /tokens/authentication
 
 ```json
 {
-  "email": "{{email}}",
-  "password": "{{password}}"
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+```
+
+**Create a new tracker** *token is required!*
+
+```
+POST /health/daily
+```
+
+```json
+{  
+     "calories":"3000 calories",
+     "walking":"10000 steps",
+     "hydrate":"2 liters",
+     "sleep":"8 hours"
 }
 ```
 
