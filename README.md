@@ -39,6 +39,12 @@ Overall, your DSN for docker should be like this: postgres://postgres:postgres@d
 ```--build``` flag forces docker-compose to rebuild the app. For example, if you have changed the source code, you need this flag.
 
 ## Healthtracker REST API
+
+```
+*healthcheck*
+GET /
+```
+
 ```
 *list of all trackers*
 GET /health/daily  
@@ -54,6 +60,13 @@ POST /goals/daily
 GET /goals/view/:id  
 PUT /goals/view/:id  
 DELETE /goals/view/:id  
+```
+
+```
+*authorization process*
+POST /users
+PUT /users/activated
+POST /tokens/authentication
 ```
 
 ## API Reference Examples
