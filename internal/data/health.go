@@ -51,7 +51,8 @@ func (m HealthModel) Insert(health *Health) error{
 		}
 	}	
 
-	tempQuery := `SELECT date(created_at) FROM healthtracker WHERE user_id = $1`
+	tempQuery := `SELECT date(created_at) FROM healthtracker WHERE user_id = $1 ORDER BY created_at DESC
+	LIMIT 1`
 
 	err = m.DB.QueryRow(tempQuery, CurrentUserID).Scan(
 		&currentDay,
@@ -68,9 +69,6 @@ func (m HealthModel) Insert(health *Health) error{
 	t, _ := time.Parse(time.RFC3339, currentDay)
 	
 	dateString := t.Format("2006-01-02")
-
-	fmt.Println(dateString)
-	fmt.Println(day)
 
 	if dateString ==  day{
 		return ErrTrackerAlreadyCreated
@@ -180,6 +178,8 @@ func (m HealthModel) Update(health *Health) error {
 		}
 	}	
 
+	fmt.Println(id)
+	fmt.Println(CurrentUserID)
 	if id == CurrentUserID{
 		changeQuery := `UPDATE goals SET achieved = true WHERE user_id = $1 AND date(created_at) = $2`
 		_, err := m.DB.Exec(changeQuery, CurrentUserID, day)

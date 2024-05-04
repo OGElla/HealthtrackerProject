@@ -38,9 +38,10 @@ func (app *application) createActivityHandler(w http.ResponseWriter, r *http.Req
 	}
 
 	err = app.models.Health.Insert(health)
-	if err!=nil {
+
+	if err != nil {
 		app.serverErrorResponse(w, r, err)
-		return
+		return 
 	}
 
 	headers := make(http.Header)
@@ -178,7 +179,7 @@ func (app *application) listHealthHandler(w http.ResponseWriter, r *http.Request
 	input.Hydrate = app.readInt(qs, "hydrate", 0, v)
 	input.Sleep = app.readInt(qs, "sleep", 0, v)
 	input.Calories = app.readInt(qs, "calories", 1, v)
-	
+
 
 	if data.ValidateFilters(v, input.Filters); !v.Valid(){
 		app.failedValidationResponse(w, r, v.Errors)

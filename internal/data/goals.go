@@ -27,10 +27,12 @@ func ValidateGoal(v *validator.Validator, goal *Goals) {
 func (g GoalModel) Insert(goal *Goals) error{
 
 	var id int64
+	var walking int64
 
 	now := time.Now()
 	day := now.Format("2006-01-02")
-	tempQuery := `SELECT user_id FROM goals WHERE date(created_at) = $1`
+	tempQuery := `SELECT user_id FROM goals WHERE date(created_at) = $1 ORDER BY created_at DESC
+	LIMIT 1`
 
 	err := g.DB.QueryRow(tempQuery, string(day)).Scan(
 		&id,
@@ -54,6 +56,32 @@ func (g GoalModel) Insert(goal *Goals) error{
 	query := `INSERT INTO goals (walking, user_id) VALUES($1, $2) RETURNING id, created_at, version, achieved` 
 
 	args := []interface{}{goal.Walking, goal.UserId}
+
+	lastQuery := `SELECT walking FROM healthtracker WHERE date(created_at) = $1 AND user_id = $2`
+
+	err = g.DB.QueryRow(lastQuery, string(day), goal.UserId).Scan(
+		&walking,
+	)
+
+	if err != nil{
+		switch {
+		case errors.Is(err, sql.ErrNoRows):
+		default:
+			return err
+		}
+	}
+
+	if int64(goal.Walking) >= walking {
+		midQuery := `UPDATE goals
+		SET achieved = true
+		WHERE user_id = $1 and date(created_at) = $2	`
+
+		_, err := g.DB.Exec(midQuery, CurrentUserID, string(day))
+		if err != nil{
+			return err
+		}
+		
+	}
 
 	return g.DB.QueryRow(query, args...).Scan(&goal.ID, &goal.CreatedAt, &goal.Version, &goal.Achieved)
 }
@@ -111,8 +139,8 @@ func (g GoalModel) Update(goal *Goals) error {
 	query := `UPDATE goals SET walking = $1, version = version + 1 WHERE id = $2 and user_id = $3 RETURNING version`
 
 	args := []interface{}{
-		&goal.Walking,
-		&goal.ID,
+		goal.Walking,
+		goal.ID,
 		CurrentUserID,
 	}
 

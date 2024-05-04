@@ -87,6 +87,7 @@ func (app *application) updateGoalHandler(w http.ResponseWriter, r *http.Request
 		}
 		return
 	}
+	
 
 	var input struct {
 		Walking data.Walking `json:"walking"`

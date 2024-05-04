@@ -11,6 +11,10 @@ import (
 	"time"
 	_ "github.com/lib/pq"
 	"github.com/OGElla/Project-API/internal/data"
+
+	"github.com/golang-migrate/migrate/v4"
+	"github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
 const version = "1.0.0"
@@ -18,6 +22,8 @@ const version = "1.0.0"
 type config struct {
 	port int
 	env string
+	migrations string
+	fill bool
 	db struct{
 		dsn string
 		maxOpenConns int
@@ -35,15 +41,27 @@ type application struct{
 func main(){
 	var cfg config
 
+	flag.BoolVar(&cfg.fill, "fill", false, "Fill database with dummy data")
+	flag.StringVar(&cfg.migrations, "migrations", "", "Path to migration files folder. If not provided, migrations do not applied")
 	flag.IntVar(&cfg.port, "port", 4000, "API server port")
 	flag.StringVar(&cfg.env, "env", "development", "Environment (development | staging | production)")
-	flag.StringVar(&cfg.db.dsn, "db-dsn", "postgres://healthtracker:12345@localhost/healthtracker?sslmode=disable", "PostgreSQL DSN")
+	flag.StringVar(&cfg.db.dsn, "db-dsn", "postgres://postgres:12345@db:5432/healthtracker?sslmode=disable", "PostgreSQL DSN")
 	flag.IntVar(&cfg.db.maxOpenConns, "db-max-open-conns", 25, "PostgreSQL max open connections")
 	flag.IntVar(&cfg.db.maxIdleConns, "db-max-idle-conns", 25, "PostgreSQL max idle connections")
 	flag.StringVar(&cfg.db.maxIdleTime, "db-max-idle-time", "15m", "PostgreSQL max connection idle time")
 
+	flag.Parse()
+
 	logger := log.New(os.Stdout, "", log.Ldate | log.Ltime)
 	
+	logger.Println("starting application with configuration", map[string]string{
+		"port":       fmt.Sprintf("%d", cfg.port),
+		"fill":       fmt.Sprintf("%t", cfg.fill),
+		"env":        cfg.env,
+		"db":         cfg.db.dsn,
+		"migrations": cfg.migrations,
+	})
+
 	db, err := openDB(cfg)
 	if err != nil{
 		logger.Fatal(err)
@@ -93,6 +111,20 @@ func openDB(cfg config) (*sql.DB, error) {
 	if err != nil{
 		return nil, err
 	}
+	if cfg.migrations != "" {
+		driver, err := postgres.WithInstance(db, &postgres.Config{})
+		if err != nil {
+			return nil, err
+		}
+		m, err := migrate.NewWithDatabaseInstance(
+			cfg.migrations,
+			"postgres", driver)
+		if err != nil {
+			return nil, err
+		}
+		m.Up()
+	}
+
 
 	return db, nil
 }
