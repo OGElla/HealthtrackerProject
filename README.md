@@ -14,11 +14,11 @@ go run ./cmd/api
 -port=4001
 ```
 #### List of flags
-```dsn``` — postgress connection string with username, password, address, port, database name, and SSL mode. Default: Value is not correct by security reasons.
+```dsn``` — postgres connection string with username, password, address, port, database name, and SSL mode. Default: Value is not correct by security reasons.
 
-```migrations``` — Path to folder with migration files. If not provided, migrations do not applied.
+```migrations``` — Path to the folder with migration files. If not provided, migrations do not apply.
 
-```fill``` — Fill database with dummy data. Default: false.
+```fill``` — Fill the database with dummy data. Default: false.
 
 ```env``` - App running mode. Default: development
 
@@ -91,6 +91,18 @@ POST /tokens/authentication
     "email": "{{email}}",
     "password": "{{password}}"
 }
+```
+
+**List your trackers**
+
+```
+GET /health/daily
+```
+
+Parameters
+
+```
+
 ```
 
 **Create a new tracker** *token is required!*
