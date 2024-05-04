@@ -102,7 +102,17 @@ GET /health/daily
 Parameters
 
 ```
+**Sorting**
 
+sort=$1, where $1 can be a positive or negative value, depends on sorting in ascending or descending order
+
+**Filtering**
+
+calories=$1&walking=$2&hydrate=$3&sleep=$4, where $1, $2, $3, $4 are the tracker values
+
+**Pagination**
+
+page=$1&age_size=$2, where $1 - the first page in dataset and #$2 = the last page in dataset
 ```
 
 **Create a new tracker** *token is required!*
