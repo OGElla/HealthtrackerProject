@@ -130,6 +130,18 @@ POST /health/daily
 }
 ```
 
+**Create a new goal** *token is required!*
+
+```
+POST /goals/daily
+```
+
+```json
+{  
+     "walking":"10000 steps",
+}
+```
+
 ## DB Structure
 ```
 Table healthtracker {
