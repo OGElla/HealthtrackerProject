@@ -131,7 +131,7 @@ POST /health/daily
 ```
 
 ## DB Structure
-
+```
 Table healthtracker {
     id bigserial [primary key]
     created_at timestamp
@@ -143,7 +143,7 @@ Table healthtracker {
 }
 
 
-Table goals json{
+Table goals {
     id bigserial PRIMARY KEY,
     created_at timestamp,
     walking integer,
