@@ -47,7 +47,16 @@ GET /health/view/:id
 PUT /health/view/:id  
 DELETE /health/view/:id  
 ```
-## API Reference
+
+```
+*list of all goals* 
+POST /goals/daily  
+GET /goals/view/:id  
+PUT /goals/view/:id  
+DELETE /goals/view/:id  
+```
+
+## API Reference Examples
 **Healthcheck**
 
 ``` 
